@@ -3,10 +3,12 @@
 Follow these steps to install and run Spectral Soul locally.
 
 ## Prerequisites
+
 - Node.js (v18 or higher recommended)
 - npm
 
 ## Steps
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/harshavardhankonisa/spectral-soul.git
@@ -25,9 +27,11 @@ Follow these steps to install and run Spectral Soul locally.
    ```
 
 ## Build for Production
+
 ```bash
 npm run build
 ```
 
 ## Output
+
 The production build will be in the `dist/` folder.

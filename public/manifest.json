@@ -1,15 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "Spectral Soul",
+  "name": "Split Soul",
   "version": "1.0",
   "description": "",
   "action": {
-    "default_popup": "index.html",
-    "default_icon": "icon.png"
+    "default_popup": "src/popup/index.html",
+    "default_icon": "icons/icon.png"
   },
+  "options_page": "src/options/index.html",
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "background": {
-    "service_worker": "background/background.js",
+    "service_worker": "background.js",
     "type": "module"
   },
   "content_scripts": [
