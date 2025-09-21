@@ -1,14 +1,24 @@
-import { useState } from 'react'
+import { Container } from '@mui/material'
+import PopupSettings from '../components/core/PopupSettings'
+import PopupArena from '../components/core/PopupArena'
 
 export default function Popup() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <h1>Split Soul</h1>
-      <div>
-        <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
-      </div>
-    </>
+    <Container
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '400px',
+        height: '600px',
+        backgroundColor: 'background.paper',
+        color: 'text.primary',
+        overflow: 'hidden'
+      }}
+    >
+      <PopupSettings />
+      <PopupArena />
+    </Container>
   )
 }

@@ -1,14 +1,26 @@
 {
   "manifest_version": 3,
   "name": "Split Soul",
-  "version": "1.0",
+  "short_name": "SS",
+  "version": "1.0.0",
   "description": "",
+  "author": "Harsha Vardhan Konisa",
+  "homepage_url": "https://github.com/harshavardhankonisa/split-soul",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon48.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "action": {
+    "default_title": "Advanced Demo",
     "default_popup": "src/popup/index.html",
-    "default_icon": "icons/icon.png"
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon48.png"
+    }
   },
   "options_page": "src/options/index.html",
-  "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "background": {
     "service_worker": "background.js",
     "type": "module"
@@ -18,5 +30,20 @@
       "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "host_permissions": ["<all_urls>"],
+  "permissions": ["activeTab", "storage", "scripting", "tabs", "notifications"],
+  "optional_permissions": ["clipboardRead", "clipboardWrite"],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Open the extension popup"
+    }
+  },
+  "incognito": "spanning",
+  "offline_enabled": true,
+  "minimum_chrome_version": "138"
 }

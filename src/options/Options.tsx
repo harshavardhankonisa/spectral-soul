@@ -7,9 +7,7 @@ export default function Options() {
         Split Soul - Options
       </Typography>
       <TextField label='User Ideology' variant='outlined' fullWidth margin='normal' />
-      <Button variant='contained' color='secondary'>
-        Save Settings
-      </Button>
+      <Button variant='contained'>Save Settings</Button>
     </Container>
   )
 }
