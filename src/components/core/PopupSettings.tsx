@@ -1,10 +1,13 @@
-import { useState } from 'react'
-import { Box, Divider } from '@mui/material'
-import ContrastIcon from '@mui/icons-material/Contrast'
-import CloseIcon from '@mui/icons-material/Close'
+import { Box } from '@mui/material'
+import type { Tab } from '../../interface/common'
 
-const PopupSettings = () => {
-  const [current, setCurrent] = useState('')
+const PopupSettings = ({
+  tabs,
+  setCurrentView
+}: {
+  tabs: Tab[]
+  setCurrentView: React.Dispatch<React.SetStateAction<number>>
+}) => {
   return (
     <>
       <Box
@@ -12,19 +15,28 @@ const PopupSettings = () => {
           display: 'flex',
           justifyContent: 'end',
           alignItems: 'center',
-          padding: 2,
-          width: '100%'
+          padding: 1.5,
+          width: '100%',
+          gap: 1
         }}
       >
-        <>
-          {current === 'theme' ? (
-            <CloseIcon height={24} width={24} onClick={() => setCurrent('')} />
-          ) : (
-            <ContrastIcon height={24} width={24} onClick={() => setCurrent('theme')} />
-          )}
-        </>
+        {tabs.map((tab, index) => (
+          <Box
+            sx={{
+              height: 24,
+              width: 24,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            onClick={() => setCurrentView(index)}
+            key={index}
+          >
+            {tab.icon}
+          </Box>
+        ))}
       </Box>
-      <Divider sx={{ width: '100%' }} />
     </>
   )
 }
