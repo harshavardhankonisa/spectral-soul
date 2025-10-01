@@ -1,6 +1,1 @@
-export interface Tab {
-  label: string
-  description: string
-  component: React.ReactNode
-  icon: React.ReactNode
-}
+export type Priority = 'low' | 'medium' | 'high'

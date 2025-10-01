@@ -1,7 +1,7 @@
-chrome.runtime.onInstalled.addListener(() => {
-  console.log('Split Soul Extension Installed!')
-})
+import { setupOnInstalled } from './listeners/onInstalled'
+import { setupOnStartup } from './listeners/onStartup'
 
-chrome.tabs.onCreated.addListener(tab => {
-  console.log('New Tab Created:', tab)
-})
+console.log('Background service worker starting...')
+
+setupOnInstalled()
+setupOnStartup()

@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import type { Tab } from '../../interface/common'
+import type { Tab } from '../../interface/ui'
 
 const PopupSettings = ({
   tabs,

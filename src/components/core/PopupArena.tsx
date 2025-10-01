@@ -6,7 +6,7 @@ import Button from '@mui/material/Button'
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import { Divider } from '@mui/material'
-import type { Tab } from '../../interface/common'
+import type { Tab } from '../../interface/ui'
 
 export default function PopupArena({
   tabs,

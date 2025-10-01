@@ -32,7 +32,7 @@
     }
   ],
   "host_permissions": ["<all_urls>"],
-  "permissions": ["activeTab", "storage", "scripting", "tabs", "notifications"],
+  "permissions": ["activeTab", "storage", "scripting", "tabs", "notifications", "history", "webNavigation"],
   "optional_permissions": ["clipboardRead", "clipboardWrite"],
   "commands": {
     "_execute_action": {
