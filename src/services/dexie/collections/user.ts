@@ -1,9 +1,27 @@
 import { db } from '../client'
 import type { User } from '../../../interface/database'
+import { getEmbeddingFromText } from '../../transformers/embedder'
 
-// CREATE or UPDATE
-export async function upsertUser(user: User) {
-  return db.users.put(user)
+async function withEmbedding(user: User): Promise<User> {
+  const textForEmbedding = `${user.username} ${user.description ?? ''}`
+  const vector = await getEmbeddingFromText(textForEmbedding)
+  return { ...user, vector, modifiedAt: new Date() }
+}
+
+// CREATE
+export async function createUser(user: User) {
+  const userWithVector = await withEmbedding(user)
+  return db.users.add(userWithVector)
+}
+
+// UPDATE BY ID
+export async function updateUser(id: number, changes: Partial<User>) {
+  const existing = await db.users.get(id)
+  if (!existing) return
+
+  const updated = { ...existing, ...changes }
+  const updatedWithVector = await withEmbedding(updated as User)
+  return db.users.put(updatedWithVector)
 }
 
 // READ

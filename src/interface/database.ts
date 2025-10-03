@@ -10,6 +10,7 @@ export interface User {
   modifiedAt: Date
   isActive: boolean
   isEditable: boolean
+  vector?: number[]
 }
 
 // Activity Fields

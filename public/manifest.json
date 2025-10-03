@@ -43,6 +43,12 @@
       "description": "Open the extension popup"
     }
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["models/**"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "incognito": "spanning",
   "offline_enabled": true,
   "minimum_chrome_version": "138"
