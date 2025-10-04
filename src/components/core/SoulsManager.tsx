@@ -11,7 +11,7 @@ import {
   DialogContent,
   DialogActions
 } from '@mui/material'
-import { getAllUsers, createUser } from '../../services/dexie/collections/user'
+import { getAllUsers, createUser, searchUsersByVector } from '../../services/dexie/collections/user'
 import type { User } from '../../interface/database'
 
 export default function SoulsManager() {
@@ -19,6 +19,7 @@ export default function SoulsManager() {
   const [selectedUserId, setSelectedUserId] = useState<number | ''>('')
   const [open, setOpen] = useState(false)
   const [form, setForm] = useState<Partial<User>>({})
+  const [searchResults, setSearchResults] = useState<User[]>([])
 
   useEffect(() => {
     getAllUsers().then(setUsers)
@@ -60,6 +61,11 @@ export default function SoulsManager() {
     })
     setOpen(false)
     getAllUsers().then(setUsers)
+  }
+
+  const handleSearch = async (query: string) => {
+    const results = await searchUsersByVector(query)
+    setSearchResults(results)
   }
 
   return (
@@ -113,6 +119,39 @@ export default function SoulsManager() {
           </Button>
         </DialogActions>
       </Dialog>
+      <Box mt={2}>
+        <TextField
+          fullWidth
+          multiline
+          rows={2}
+          placeholder='Search souls by vector similarity...'
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
+              e.preventDefault()
+              handleSearch(form.username ?? '')
+            }
+          }}
+          value={form.username ?? ''}
+          onChange={handleChange}
+          name='username'
+        />
+        <Button variant='contained' color='primary' onClick={() => handleSearch(form.username ?? '')}>
+          Search
+        </Button>
+      </Box>
+      <Box mt={2}>
+        <Typography variant='h6'>Search Results</Typography>
+        {searchResults.length === 0 ? (
+          <Typography>No results found.</Typography>
+        ) : (
+          searchResults.map(user => (
+            <Box key={user.id} mb={1} p={1} border='1px solid #ccc' borderRadius='4px'>
+              <Typography variant='subtitle1'>{user.username}</Typography>
+              <Typography variant='body2'>{user.description}</Typography>
+            </Box>
+          ))
+        )}
+      </Box>
     </Box>
   )
 }
