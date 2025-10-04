@@ -117,9 +117,9 @@ export async function searchUsersByVector(query: string) {
     const users = await getAllUsers()
     if (!users.length) return []
 
-    const topK = Math.max(5, Math.ceil(users.length * 0.1))
+    const topK = Math.max(100, Math.ceil(users.length * 0.01))
 
-    const SIM_THRESHOLD = 0.1
+    const SIM_THRESHOLD = 0.3
 
     const scored: { user: User; similarity: number }[] = []
     for (let i = 0; i < users.length; i++) {
